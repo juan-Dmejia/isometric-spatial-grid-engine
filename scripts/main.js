@@ -16,7 +16,9 @@ export const Engine = {
 
     // Runtime state tracking
     mouse: { i: 0, j: 0, k: 0, x: 0, y: 0 },
+    tile_id: 1,             // determines tile to be placed (green --> red), switch with number keys
     tile_placement_k: 0,    // tracks which k-level tiles are being placed on
+    pathfind_start: { i: 0, j: 0, k: 0 }, pathfind_target: { i: 0, j: 0, k: 0 },    //update with O & P keys to set path
     selector: null,
     
     // Renderable Instances of objects to pair alongside their map key
@@ -49,7 +51,6 @@ async function onBeforeProjectStart(runtime) {
             Engine.tile_placement_k = top_z;
         }
 
-        
         if (e.button === 2) {
             // Right-click: Delete top tile in the stack
             if (top_z > 0) {
@@ -62,9 +63,9 @@ async function onBeforeProjectStart(runtime) {
 
 
     runtime.addEventListener("keydown", (e) => {
-        if (e.key === "q") {
-            console.log("Mouse Grid Position:", Engine.mouse.i, Engine.mouse.j, "Top Z:", Engine.grid.get_top_z(Engine.mouse.i, Engine.mouse.j));
-        }
+        const { i, j } = Engine.mouse;
+        const top_z = Engine.grid.get_top_z(i, j);
+
         if (e.key === "Tab") {
             if (runtime.objects.TabMenuBackdrop.getFirstInstance().isVisible == true) {
                 // Hide all instances
@@ -80,6 +81,40 @@ async function onBeforeProjectStart(runtime) {
             
         }
 
+        if(["1", "2", "3", "4"].includes(e.key)) {
+            Engine.tile_id = Number(e.key);
+            console.log("tile_id: " + e.key)
+        }
+
+        if (e.key === "o") {
+            if (top_z == 0) return;
+
+            Engine.pathfind_start = {i, j, top_z};
+            if (!Engine.pathfind_start) return;
+
+            runtime.objects.Text_pathStart.getFirstInstance().text = "PATH-START: " + String(i) + ", " + String(j) + ", " + String(top_z);
+        }
+
+        if (e.key === "p") {
+            if (top_z == 0) return;
+            
+            Engine.pathfind_target = {i, j, top_z};
+            if (!Engine.pathfind_target) return;
+
+            runtime.objects.Text_pathEnd.getFirstInstance().text = "PATH-END: " + String(i) + ", " + String(j) + ", " + String(top_z);
+        }
+
+        if (e.key === "Enter") {
+            const path = find_path(Engine.pathfind_start, Engine.pathfind_target, Engine.grid);
+
+            for (const inst of runtime.objects.PathMarker.getAllInstances()) {inst.destroy();}
+
+            for (const tile of path) {
+                const {x, y} = Engine.iso.grid_to_screen(tile.i, tile.j, tile.k);
+                runtime.objects.PathMarker.createInstance(1, x, y);
+            }
+            runtime.objects.Text_pathLength.getFirstInstance().text = "PATH-LENGTH: " + String(path.length)
+        }
     });
 }
 
@@ -127,7 +162,6 @@ function tick(runtime) {
     }
 
     // Tile placement when mouse is held down
-    // need to add restraints on k/z-level to prevent tiles instantly stacking when holding mouse button
     if (runtime.mouse.isMouseButtonDown(0)) {
         place_tile_at_mouse(runtime);
     } 
@@ -140,8 +174,9 @@ function tick(runtime) {
 
     // Update tabMenu text
     runtime.objects.Text_fps.getFirstInstance().text = "FPS: " + String(runtime.fps);
-    runtime.objects.Text_tileCount.getFirstInstance().text = "TILE_COUNT: " + String(Engine.tiles.length);
+    runtime.objects.Text_tileCount.getFirstInstance().text = "TILE-COUNT: " + String(Engine.tiles.length);
     runtime.objects.Text_mouseCoords.getFirstInstance().text = "COORDS (i, j, k): " + String(i) + ", " + String(j) + ", " + String(top_z);
+    
 }
 
 function place_tile_at_mouse(runtime) {
@@ -154,9 +189,9 @@ function place_tile_at_mouse(runtime) {
     if (k != Engine.tile_placement_k) return;                       // Different height level than initial placement
 
     const { x: screen_x, y: screenY } = Engine.iso.grid_to_screen(i, j, k);
-    const new_tile_instance = runtime.objects.GrassTile.createInstance(0, screen_x, screenY);
+    const new_tile_instance = runtime.objects.LandTile.createInstance(0, screen_x, screenY);
 
-    const new_tile = new TileEntity(i, j, k, new_tile_instance);
+    const new_tile = new TileEntity(i, j, k, Engine.tile_id, new_tile_instance);
     Engine.grid.add_tile(new_tile);
     Engine.tiles.push(new_tile);
     

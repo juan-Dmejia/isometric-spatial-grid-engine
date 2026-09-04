@@ -58,9 +58,7 @@
 	],
 	"uniqueId": "8oduujy5eb7",
 	"objectTypes": {
-		"items": [
-			"TabMenuBackdrop"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -73,7 +71,7 @@
 			},
 			{
 				"items": [
-					"GrassTile",
+					"LandTile",
 					"WaterGrid",
 					"WaterTile"
 				],
@@ -86,7 +84,13 @@
 					"Selector",
 					"Text_tileCount",
 					"Text_mouseCoords",
-					"Text_Controls"
+					"Text_Controls",
+					"Text_pathStart",
+					"Text_pathEnd",
+					"Text_pathCost",
+					"Text_pathLength",
+					"TabMenuBackdrop",
+					"PathMarker"
 				],
 				"subfolders": [],
 				"name": "UI"

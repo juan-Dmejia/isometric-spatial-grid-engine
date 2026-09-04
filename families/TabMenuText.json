@@ -9,6 +9,10 @@
 		"Text_fps",
 		"Text_tileCount",
 		"Text_mouseCoords",
-		"Text_Controls"
+		"Text_Controls",
+		"Text_pathStart",
+		"Text_pathEnd",
+		"Text_pathCost",
+		"Text_pathLength"
 	]
 }

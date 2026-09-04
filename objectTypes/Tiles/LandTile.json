@@ -1,0 +1,195 @@
+{
+	"name": "LandTile",
+	"plugin-id": "Sprite",
+	"sid": 761992460184980,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.625,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6534203,
+						"collisionPoly": {
+							"points": [
+								0.4375,
+								0.125,
+								0.5625,
+								0.125,
+								1,
+								0.34375,
+								1,
+								0.40625,
+								0.53125,
+								0.65625,
+								0.46875,
+								0.65625,
+								0,
+								0.40625,
+								0,
+								0.34375
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 276299155282840,
+				"name": "Green",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.625,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7575762,
+						"collisionPoly": {
+							"points": [
+								0.4375,
+								0.125,
+								0.5625,
+								0.125,
+								1,
+								0.34375,
+								1,
+								0.40625,
+								0.53125,
+								0.65625,
+								0.46875,
+								0.65625,
+								0,
+								0.40625,
+								0,
+								0.34375
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 464370644064124,
+				"name": "Yellow",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.625,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7913820,
+						"collisionPoly": {
+							"points": [
+								0.4375,
+								0.125,
+								0.5625,
+								0.125,
+								1,
+								0.34375,
+								1,
+								0.40625,
+								0.53125,
+								0.65625,
+								0.46875,
+								0.65625,
+								0,
+								0.40625,
+								0,
+								0.34375
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 735907992106224,
+				"name": "Orange",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.625,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7378448,
+						"collisionPoly": {
+							"points": [
+								0.4375,
+								0.125,
+								0.5625,
+								0.125,
+								1,
+								0.34375,
+								1,
+								0.40625,
+								0.53125,
+								0.65625,
+								0.46875,
+								0.65625,
+								0,
+								0.40625,
+								0,
+								0.34375
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 241891787590592,
+				"name": "Red",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

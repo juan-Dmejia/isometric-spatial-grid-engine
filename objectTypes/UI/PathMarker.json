@@ -1,7 +1,7 @@
 {
-	"name": "GrassTile",
+	"name": "PathMarker",
 	"plugin-id": "Sprite",
-	"sid": 761992460184980,
+	"sid": 174249143679648,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -12,41 +12,21 @@
 			{
 				"frames": [
 					{
-						"width": 32,
-						"height": 32,
+						"width": 4,
+						"height": 4,
 						"originX": 0.5,
-						"originY": 0.625,
+						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 6534203,
-						"collisionPoly": {
-							"points": [
-								0.4375,
-								0.125,
-								0.5625,
-								0.125,
-								1,
-								0.34375,
-								1,
-								0.40625,
-								0.53125,
-								0.65625,
-								0.46875,
-								0.65625,
-								0,
-								0.40625,
-								0,
-								0.34375
-							]
-						},
+						"imageSpriteId": 3667077,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 276299155282840,
+				"sid": 347256618787996,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

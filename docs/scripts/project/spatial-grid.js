@@ -1,11 +1,36 @@
 export class TileEntity {
     /* Constructor class used by all land & water tiles */
 
-    constructor(i, j, k, instance = null) {
+    constructor(i, j, k, id, instance = null) {
         this.i = i;
         this.j = j;
         this.k = k;
+        this.id = id;
         this.instance = instance;
+
+        switch (this.id) {
+            case 1:
+                this.cost = 0.0;
+                this.instance.setAnimation("Green");
+                break;
+            case 2:
+                this.cost = .25;
+                this.instance.setAnimation("Yellow");
+                break;
+            case 3:
+                this.cost = .5;
+                this.instance.setAnimation("Orange");
+                break;
+            case 4:
+                this.cost = 1.0;
+                this.instance.setAnimation("Red");
+                break;    
+            default:
+                console.warn("WARNING: tile with invalid id created");
+                break;
+        }
+
+        
     }
 
     is_edge_tile(grid) {
@@ -23,8 +48,8 @@ export class TileEntity {
     }
 }
 
-export class ObjectInstance {
-    /* Constructor class used by all object instances, currently unused */
+export class ObstacleEntity {
+    /* Constructor class used by all obstacle instances, currently unused */
     constructor(i, j, k, id, instance = null) {
         this.i = i;
         this.j = j;
@@ -53,9 +78,9 @@ export class SpatialGrid {
 
     // Tile management functions
 
-    add_tile(tileEntity) {
-        const key = this.get_key(tileEntity.i, tileEntity.j, tileEntity.k);
-        this.tile_map.set(key, tileEntity);
+    add_tile(tile_entity) {
+        const key = this.get_key(tile_entity.i, tile_entity.j, tile_entity.k);
+        this.tile_map.set(key, tile_entity);
     }
 
     get_tile(i, j, k) {
@@ -68,9 +93,9 @@ export class SpatialGrid {
 
     // object instance functions
 
-    add_instance(object_instance) {
-        const key = this.get_key(object_instance.i, object_instance.j, object_instance.k);
-        this.instance_map.set(key, object_instance);
+    add_instance(obstacle_instance) {
+        const key = this.get_key(obstacle_instance.i, obstacle_instance.j, obstacle_instance.k);
+        this.instance_map.set(key, obstacle_instance);
     }
 
     get_instance(i, j, k) {
@@ -95,7 +120,7 @@ export class SpatialGrid {
     is_traversable(i, j, k) {
         /* Interface method required by Pathfinding.js, Currently unused */
 
-        // Unwalkable if blocked by an instance/building at elevation k
+        // Unwalkable if blocked by an obstacle at elevation k
         if (this.has_instance(i, j, k)) return false;
         
         // Walkable if a ground tile exists below the current step level
@@ -125,10 +150,10 @@ export class SpatialGrid {
 
     destroy_instance(i, j, k) {
         const key = this.get_key(i, j, k);
-        const object_instance = this.instance_map.get(key);
+        const obstacle_instance = this.instance_map.get(key);
 
-        if (object_instance) {
-            object_instance.destroy();
+        if (obstacle_instance) {
+            obstacle_instance.destroy();
             this.instance_map.delete(key);
         }
     }

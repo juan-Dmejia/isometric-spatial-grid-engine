@@ -7,8 +7,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Keyboard,
 		C3.Plugins.Mouse,
 		C3.Plugins.TiledBg,
-		C3.Plugins.Text,
-		C3.Behaviors.Anchor
+		C3.Plugins.Text
 	];
 };
 self.C3_JsPropNameTable = [
@@ -17,22 +16,40 @@ self.C3_JsPropNameTable = [
 	{Camera: 0},
 	{Keyboard: 0},
 	{Mouse: 0},
-	{GrassTile: 0},
+	{LandTile: 0},
 	{WaterGrid: 0},
 	{WaterTile: 0},
-	{value: 0},
-	{Anchor: 0},
-	{Text: 0},
-	{Selector: 0}
+	{Text_fps: 0},
+	{Selector: 0},
+	{Text_tileCount: 0},
+	{Text_mouseCoords: 0},
+	{Text_Controls: 0},
+	{Text_pathStart: 0},
+	{Text_pathEnd: 0},
+	{Text_pathCost: 0},
+	{Text_pathLength: 0},
+	{TabMenuBackdrop: 0},
+	{PathMarker: 0},
+	{TabMenuText: 0}
 ];
 
 self.InstanceType = {
 	Camera: class extends self.ISpriteInstance {},
 	Keyboard: class extends self.IInstance {},
 	Mouse: class extends self.IInstance {},
-	GrassTile: class extends self.ISpriteInstance {},
+	LandTile: class extends self.ISpriteInstance {},
 	WaterGrid: class extends self.ITiledBackgroundInstance {},
 	WaterTile: class extends self.ISpriteInstance {},
-	Text: class extends self.ITextInstance {},
-	Selector: class extends self.ISpriteInstance {}
+	Text_fps: class extends self.ITextInstance {},
+	Selector: class extends self.ISpriteInstance {},
+	Text_tileCount: class extends self.ITextInstance {},
+	Text_mouseCoords: class extends self.ITextInstance {},
+	Text_Controls: class extends self.ITextInstance {},
+	Text_pathStart: class extends self.ITextInstance {},
+	Text_pathEnd: class extends self.ITextInstance {},
+	Text_pathCost: class extends self.ITextInstance {},
+	Text_pathLength: class extends self.ITextInstance {},
+	TabMenuBackdrop: class extends self.ISpriteInstance {},
+	PathMarker: class extends self.ISpriteInstance {},
+	TabMenuText: class extends self.ITextInstance {}
 }

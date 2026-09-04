@@ -49,7 +49,7 @@ class PriorityQueue {
     }
 }
 
-function octileDistance(a, b) {
+function octile_distance(a, b) {
     const dx = Math.abs(a.i - b.i);
     const dy = Math.abs(a.j - b.j);
     const D = 1;
@@ -57,11 +57,11 @@ function octileDistance(a, b) {
     return D * (dx + dy) + (D2 - 2 * D) * Math.min(dx, dy);
 }
 
-function nodeKey(i, j, k) {
+function node_key(i, j, k) {
     return `${i},${j},${k}`;
 }
 
-function reconstructPath(node) {
+function reconstruct_path(node) {
     const path = [];
     let current = node;
     while (current) {
@@ -71,8 +71,8 @@ function reconstructPath(node) {
     return path.reverse();
 }
 
-function getAdjacentCoordinates(node, allowDiagonal) {
-    const directions = allowDiagonal
+function get_adjacent_coordinates(node, allow_diagonal) {
+    const directions = allow_diagonal
         ? [
             { i: 1, j: 0 }, { i: -1, j: 0 }, { i: 0, j: 1 }, { i: 0, j: -1 },
             { i: 1, j: 1 }, { i: 1, j: -1 }, { i: -1, j: 1 }, { i: -1, j: -1 }
@@ -88,98 +88,101 @@ function getAdjacentCoordinates(node, allowDiagonal) {
     Modern A* Spatial Pathfinding Solver
     @param {Object} start - {i, j, k}
     @param {Object} target - {i, j, k}
-    @param {Object} grid - Abstraction layer exposing getTopZ(i,j) and isTraversable(i,j,k)
+    @param {Object} grid - Abstraction layer exposing get_top_z(i,j) and is_traversable(i,j,k)
     @param {Object} options - Pathfinding settings
     Currently unused
 */
 export function find_path(start, target, grid, options = {}) {
     const {
-        allowDiagonal = true,
-        maxSearch = 2000,
-        returnNextStep = false,
-        baseMoveCost = 1.0,
-        diagonalCost = Math.SQRT2,
-        climbCost = 0.5
+        allow_diagonal = true,
+        max_search = 2000,
+        return_only_next_step = false,
+        base_move_cost = 1.0,
+        diagonal_cost = 1.0,
+        climb_cost = 0.5
     } = options;
 
-    const startZ = start.k ?? grid.getTopZ(start.i, start.j);
-    const targetZ = target.k ?? grid.getTopZ(target.i, target.j);
+    const start_z = start.k ?? grid.get_top_z(start.i, start.j);
+    const target_z = target.k ?? grid.get_top_z(target.i, target.j);
 
-    const openHeap = new PriorityQueue();
-    const openSetMap = new Map();
-    const closedSet = new Set();
+    const open_heap = new PriorityQueue();
+    const open_set_map = new Map();
+    const closed_set = new Set();
 
-    const startNode = {
+    const start_node = {
         i: start.i,
         j: start.j,
-        k: startZ,
+        k: start_z,
         g: 0,
-        h: octileDistance(start, target),
-        f: octileDistance(start, target),
+        h: octile_distance(start, target),
+        f: octile_distance(start, target),
         parent: null
     };
 
-    const startKey = nodeKey(startNode.i, startNode.j, startNode.k);
-    const targetKey = nodeKey(target.i, target.j, targetZ);
+    const start_key = node_key(start_node.i, start_node.j, start_node.k);
+    const target_key = node_key(target.i, target.j, target_z);
 
-    openHeap.push(startNode);
-    openSetMap.set(startKey, startNode);
+    open_heap.push(start_node);
+    open_set_map.set(start_key, start_node);
 
-    while (openHeap.size() > 0) {
-        if (closedSet.size > maxSearch) {
+    while (open_heap.size() > 0) {
+
+        if (closed_set.size > max_search) {
             console.warn("A* Search aborted: Exceeded iteration limits.");
             return null;
         }
 
-        const current = openHeap.pop();
-        const currentKey = nodeKey(current.i, current.j, current.k);
-        openSetMap.delete(currentKey);
+        const current = open_heap.pop();
+        const current_key = node_key(current.i, current.j, current.k);
+        open_set_map.delete(current_key);
 
-        if (currentKey === targetKey) {
-            const fullPath = reconstructPath(current);
-            return returnNextStep ? (fullPath[1] || null) : fullPath;
+        if (current_key === target_key) {
+            const fullPath = reconstruct_path(current);
+            return return_only_next_step ? (fullPath[1] || null) : fullPath;
         }
 
-        closedSet.add(currentKey);
+        closed_set.add(current_key);
 
-        for (const neighborCoord of getAdjacentCoordinates(current, allowDiagonal)) {
-            const topZ = grid.getTopZ(neighborCoord.i, neighborCoord.j);
+        for (const neighbor_coord of get_adjacent_coordinates(current, allow_diagonal)) {
+            const top_z = grid.get_top_z(neighbor_coord.i, neighbor_coord.j);
             
             // Unwalkable if no tiles exist below
-            if (topZ === 0) continue; 
+            if (top_z === 0) continue; 
 
-            // Elevation step threshold constraint (Max jump/climb height = 1)
-            const dz = topZ - current.k;
+            // Elevation step constraint (Max jump/climb height = 1)
+            const dz = top_z - current.k;
             if (Math.abs(dz) > 1) continue;
 
-            const nKey = nodeKey(neighborCoord.i, neighborCoord.j, topZ);
-            if (closedSet.has(nKey)) continue;
+            // Ignore keys already traversed
+            const n_key = node_key(neighbor_coord.i, neighbor_coord.j, top_z);
+            if (closed_set.has(n_key)) continue;
 
             // Spatial obstruction check
-            if (!grid.isTraversable(neighborCoord.i, neighborCoord.j, topZ)) continue;
+            if (!grid.is_traversable(neighbor_coord.i, neighbor_coord.j, top_z)) continue;
 
-            const isDiagonal = neighborCoord.i !== current.i && neighborCoord.j !== current.j;
-            let stepCost = isDiagonal ? diagonalCost : baseMoveCost;
+            // Add additonal "diagonal cost" (can be zero) if next tile is a diagonal
+            const is_diagonal = neighbor_coord.i !== current.i && neighbor_coord.j !== current.j;
+            let step_cost = is_diagonal ? diagonal_cost : base_move_cost;
 
-            // Elevation traversal weight
-            if (dz > 0) stepCost += dz * climbCost;
+            // Elevation traversal cost, adds "climb_cost" to base travel cost according to flights climbed during step
+            if (dz > 0) step_cost += dz * climb_cost;
 
-            const gScore = current.g + stepCost;
-            const existingNode = openSetMap.get(nKey);
+            const g_score = current.g + step_cost;
+            const existing_node = open_set_map.get(n_key);
 
-            if (!existingNode || gScore < existingNode.g) {
-                const neighborNode = {
-                    i: neighborCoord.i,
-                    j: neighborCoord.j,
-                    k: topZ,
-                    g: gScore,
-                    h: octileDistance({ i: neighborCoord.i, j: neighborCoord.j }, target),
-                    f: gScore + octileDistance({ i: neighborCoord.i, j: neighborCoord.j }, target),
+            if (!existing_node || g_score < existing_node.g) {
+                const neighbor_node = {
+                    i: neighbor_coord.i,
+                    j: neighbor_coord.j,
+                    k: top_z,
+                    g: g_score,
+                    h: octile_distance({ i: neighbor_coord.i, j: neighbor_coord.j }, target),
+                    f: g_score + octile_distance({ i: neighbor_coord.i, j: neighbor_coord.j }, target),
                     parent: current
                 };
 
-                openSetMap.set(nKey, neighborNode);
-                openHeap.push(neighborNode);
+                open_set_map.set(n_key, neighbor_node);
+                open_heap.push(neighbor_node);
             }
         }
     }

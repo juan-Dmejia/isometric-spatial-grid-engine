@@ -1,11 +1,36 @@
 export class TileEntity {
     /* Constructor class used by all land & water tiles */
 
-    constructor(i, j, k, instance = null) {
+    constructor(i, j, k, id, instance = null) {
         this.i = i;
         this.j = j;
         this.k = k;
+        this.id = id;
         this.instance = instance;
+
+        switch (this.id) {
+            case 1:
+                this.cost = 0.0;
+                this.instance.setAnimation("Green");
+                break;
+            case 2:
+                this.cost = .25;
+                this.instance.setAnimation("Yellow");
+                break;
+            case 3:
+                this.cost = .5;
+                this.instance.setAnimation("Orange");
+                break;
+            case 4:
+                this.cost = 1.0;
+                this.instance.setAnimation("Red");
+                break;    
+            default:
+                console.warn("WARNING: tile with invalid id created");
+                break;
+        }
+
+        
     }
 
     is_edge_tile(grid) {
