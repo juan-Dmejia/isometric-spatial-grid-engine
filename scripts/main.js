@@ -16,6 +16,7 @@ export const Engine = {
 
     // Runtime state tracking
     mouse: { i: 0, j: 0, k: 0, x: 0, y: 0 },
+    tile_placement_k: 0,    // tracks which k-level tiles are being placed on
     selector: null,
     
     // Renderable Instances of objects to pair alongside their map key
@@ -42,8 +43,15 @@ async function onBeforeProjectStart(runtime) {
         const { i, j } = Engine.mouse;
         const top_z = Engine.grid.get_top_z(i, j);
 
-        // Right-click: Delete top tile in the stack
+        
+        if (e.button === 0) {
+            // Left-click: Save Mouse K level for tile placement
+            Engine.tile_placement_k = top_z;
+        }
+
+        
         if (e.button === 2) {
+            // Right-click: Delete top tile in the stack
             if (top_z > 0) {
                 Engine.grid.destroy_tile_stack(i, j, top_z - 1);
                 Engine.tiles = Engine.tiles.filter(tile => Engine.grid.has_tile(tile.i, tile.j, tile.k));
@@ -51,6 +59,7 @@ async function onBeforeProjectStart(runtime) {
             }
         }
     });
+
 
     runtime.addEventListener("keydown", (e) => {
         if (e.key === "q") {
@@ -142,6 +151,7 @@ function place_tile_at_mouse(runtime) {
     if (k > Engine.max_z) return;                                     // Max height limit
     if (k > 0 && !Engine.grid.has_tile(i, j, k - 1)) return;         // Cannot place in mid-air
     if (Engine.grid.has_tile(i, j, k)) return;                       // Occupied
+    if (k != Engine.tile_placement_k) return;                       // Different height level than initial placement
 
     const { x: screen_x, y: screenY } = Engine.iso.grid_to_screen(i, j, k);
     const new_tile_instance = runtime.objects.GrassTile.createInstance(0, screen_x, screenY);
