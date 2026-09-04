@@ -1,0 +1,14 @@
+{
+	"name": "TabMenuText",
+	"plugin-id": "Text",
+	"sid": 923364735037148,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"Text_fps",
+		"Text_tileCount",
+		"Text_mouseCoords",
+		"Text_Controls"
+	]
+}

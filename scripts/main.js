@@ -1,5 +1,5 @@
 import { IsoMath } from "./iso-math.js";
-import { SpatialGrid, TileEntity, ObjectInstance } from "./spatial-grid.js";
+import { SpatialGrid, TileEntity, ObstacleEntity } from "./spatial-grid.js";
 import { find_path } from "./pathfinding.js";
 
 
@@ -10,7 +10,7 @@ export const Engine = {
     grid: new SpatialGrid(),
     
     // Grid settings
-    area: 16,
+    area: 12,
     max_z: 2,
     scroll_speed: 2,
 
@@ -21,10 +21,9 @@ export const Engine = {
     // Renderable Instances of objects to pair alongside their map key
     tiles: [],          // Visual tile instances
 
-    obj_instances: [],      // Visual object instances
-    // Currently no 'objects' implemented
+    obstacle_instances: [],      // Visual object instances, Currently not implemented
 
-    water_tiles: [],     // Visual background water obj_instances
+    water_tiles: [],     // Visual background water obstacle_instances
     
     // Visual Depth Sorting Check
     // Prevents sprite sorting every frame/tick
@@ -57,6 +56,21 @@ async function onBeforeProjectStart(runtime) {
         if (e.key === "q") {
             console.log("Mouse Grid Position:", Engine.mouse.i, Engine.mouse.j, "Top Z:", Engine.grid.get_top_z(Engine.mouse.i, Engine.mouse.j));
         }
+        if (e.key === "Tab") {
+            if (runtime.objects.TabMenuBackdrop.getFirstInstance().isVisible == true) {
+                // Hide all instances
+                runtime.objects.TabMenuText.instances().forEach(inst => inst.isVisible = false);
+                runtime.objects.TabMenuBackdrop.getAllInstances().forEach(inst => inst.isVisible = false);
+            }
+            else {
+                // Show all instances
+                runtime.objects.TabMenuText.instances().forEach(inst => inst.isVisible = true);
+                runtime.objects.TabMenuBackdrop.getAllInstances().forEach(inst => inst.isVisible = true);
+            }
+
+            
+        }
+
     });
 }
 
@@ -77,7 +91,7 @@ function intialize_map(runtime) {
 function tick(runtime) {
     /* Runs every tick, handles most continuous/real time logic */
 
-    handle_camera_scroll(runtime);
+    //  handle_camera_scroll(runtime);     // currently removed to improve performance
 
     // Update Mouse and Grid Position
     Engine.mouse.x = runtime.mouse.getMouseX();
@@ -114,6 +128,11 @@ function tick(runtime) {
         sort_isometric_depth();
         Engine.needs_depth_sort = false;
     }
+
+    // Update tabMenu text
+    runtime.objects.Text_fps.getFirstInstance().text = "FPS: " + String(runtime.fps);
+    runtime.objects.Text_tileCount.getFirstInstance().text = "TILE_COUNT: " + String(Engine.tiles.length);
+    runtime.objects.Text_mouseCoords.getFirstInstance().text = "COORDS (i, j, k): " + String(i) + ", " + String(j) + ", " + String(top_z);
 }
 
 function place_tile_at_mouse(runtime) {
@@ -147,7 +166,7 @@ function sort_isometric_depth() {
 
     const sortables = [
         ...Engine.tiles,
-        ...Engine.obj_instances,
+        ...Engine.obstacle_instances,
         ...Engine.water_tiles,
         ...selector_obj,
     ];

@@ -43,13 +43,6 @@
 		},
 		{
 			"type": "behavior",
-			"id": "Anchor",
-			"name": "Anchor",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "behavior",
 			"id": "bound",
 			"name": "Bound to",
 			"author": "Scirra",
@@ -65,7 +58,9 @@
 	],
 	"uniqueId": "8oduujy5eb7",
 	"objectTypes": {
-		"items": [],
+		"items": [
+			"TabMenuBackdrop"
+		],
 		"subfolders": [
 			{
 				"items": [
@@ -87,8 +82,11 @@
 			},
 			{
 				"items": [
-					"Text",
-					"Selector"
+					"Text_fps",
+					"Selector",
+					"Text_tileCount",
+					"Text_mouseCoords",
+					"Text_Controls"
 				],
 				"subfolders": [],
 				"name": "UI"
@@ -99,13 +97,14 @@
 	"autosaveData": null,
 	"containers": [],
 	"families": {
-		"items": [],
+		"items": [
+			"TabMenuText"
+		],
 		"subfolders": []
 	},
 	"layouts": {
 		"items": [
-			"Layout 1",
-			"Layout 2"
+			"Layout 1"
 		],
 		"subfolders": []
 	},
@@ -318,7 +317,7 @@
 		"exportFileStructure": "folders",
 		"scriptsType": "module"
 	},
-	"viewportWidth": 320,
-	"viewportHeight": 180,
+	"viewportWidth": 640,
+	"viewportHeight": 360,
 	"firstLayout": null
 }

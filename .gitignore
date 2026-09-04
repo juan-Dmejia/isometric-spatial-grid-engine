@@ -1,3 +1,22 @@
 *.uistate.json
 uistate
 ts-defs
+
+# OS Artifacts
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Construct Backups
+*.c3p.bak
+
+# Editor Metadata
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependencies & Logs
+node_modules/
+npm-debug.log*

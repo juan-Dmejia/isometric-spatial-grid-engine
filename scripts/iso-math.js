@@ -1,6 +1,6 @@
 export class IsoMath {
     /*
-        Blueprint for several math functions related for an isometric grid
+        Blueprint for several math functions related to an isometric grid
         Can be used in just about any grid-based isometric engine/game project
     */
     constructor(tile_width = 32, tile_height = 16, offset_x = 320, offset_y = 48) {
