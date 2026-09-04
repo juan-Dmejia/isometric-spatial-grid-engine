@@ -25,4 +25,4 @@ The controls are WASD to move the camera, right click to place tiles, and left c
 ### Future Work
 The project is still a work in progress. A pathfinding algorithm was implemented back when the project was intended as a video game.
 Now the algorithm remains unused, but my current plan is to create a path-cost simulation tool with configurable obstacles, terrain costs, etc.
-In the future I may add procedural generation with configurable settings, along with generation seeds and even map presets to load in maps base on discrete keys.
+In the future I may add procedural generation with configurable settings, along with generation seeds and even map presets to load in maps according to discrete keys.
