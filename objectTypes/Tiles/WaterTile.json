@@ -1,0 +1,105 @@
+{
+	"name": "WaterTile",
+	"plugin-id": "Sprite",
+	"sid": 684649236847596,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1227666,
+						"collisionPoly": {
+							"points": [
+								0.4375,
+								0.15625,
+								0.5625,
+								0.15625,
+								1,
+								0.375,
+								1,
+								0.53125,
+								0.5625,
+								0.75,
+								0.4375,
+								0.75,
+								0,
+								0.53125,
+								0,
+								0.375
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 396462376110184,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.53125,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1788764,
+						"collisionPoly": {
+							"points": [
+								0.4375,
+								0.28125,
+								0.5625,
+								0.28125,
+								0.75,
+								0.375,
+								0.75,
+								0.5625,
+								0.5625,
+								0.65625,
+								0.4375,
+								0.65625,
+								0.25,
+								0.5625,
+								0.25,
+								0.375
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 363378220705346,
+				"name": "Animation 2",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

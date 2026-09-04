@@ -1,0 +1,24 @@
+{
+	"name": "Text",
+	"plugin-id": "Text",
+	"sid": 280219510276779,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "value",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 869171563706543
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Anchor",
+			"name": "Anchor",
+			"sid": 539226330338911
+		}
+	],
+	"effectTypes": []
+}
