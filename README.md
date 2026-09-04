@@ -3,6 +3,8 @@ A personal game-dev project that was discarded and later turned into an isometri
 This project has been heavily refactored into a modular architecture to demonstrate efficient algorithmic design,
 clean state management, and strict separation of math logic from the visual rendering runtime.
 
+This project can prove useful to those building their own isometric, grid-based games. Feel free to look at, study, and even copy any code you see. While built in the Construct 3 web engine, The underlying logic behind the grid systems is modular and should apply to any programming language with appropriate tweaks.
+
 ### Core Architecture & Features
 * **Isometric Projections (`IsoMath.js`):** Handles screen-to-grid coordinate mapping utilizing a fixed baseline for ground tiles, calculating vertical $k$-level offsets via precise $Y$-coordinate subtraction.
 * **Spatial State Management (`SpatialGrid.js`):** Implements an $O(1)$ spatial lookup grid for rapid state querying, collision detection, and terrain elevation locking during click-and-drag events.
