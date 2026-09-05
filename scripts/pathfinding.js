@@ -84,15 +84,18 @@ function get_adjacent_coordinates(node, allow_diagonal) {
     return directions.map(d => ({ i: node.i + d.i, j: node.j + d.j }));
 }
 
-/*
-    Modern A* Spatial Pathfinding Solver
-    @param {Object} start - {i, j, k}
-    @param {Object} target - {i, j, k}
-    @param {Object} grid - Abstraction layer exposing get_top_z(i,j) and is_traversable(i,j,k)
-    @param {Object} options - Pathfinding settings
-    Currently unused
-*/
+
 export function find_path(start, target, grid, options = {}) {
+    /*
+        Modern A* Spatial Pathfinding Solver
+        - param {Object} start - {i, j, k}
+        - @param {Object} target - {i, j, k}
+        - @param {Object} grid - Abstraction layer exposing get_top_z(i,j) and is_traversable(i,j,k)
+        - @param {Object} options - Pathfinding settings
+        Returns null if no path is found
+        Returns null if # of searched tiles exceeds max_search size
+        Returns {steps, cost}, array of step coordinates and the total travel cost of the path
+    */
     const {
         allow_diagonal = true,
         max_search = 2000,
