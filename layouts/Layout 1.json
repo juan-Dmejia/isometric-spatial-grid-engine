@@ -163,7 +163,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 8,
@@ -174,11 +174,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 503.64479313648087,
-						"y": 286.4334716796875,
+						"x": 475,
+						"y": 285,
 						"width": 57.01042144947883,
 						"height": 10,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -212,7 +212,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 9,
@@ -223,11 +223,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 515.7560198152818,
-						"y": 296.8958435058594,
+						"x": 475,
+						"y": 295,
 						"width": 82.9939922984546,
 						"height": 10,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -261,7 +261,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 10,
@@ -272,11 +272,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 532.9675190203811,
-						"y": 307.8707580566406,
+						"x": 475,
+						"y": 305,
 						"width": 116.25481847990966,
 						"height": 10,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -310,7 +310,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 11,
@@ -321,11 +321,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 131.53310035479439,
-						"y": 304.3720703125,
+						"x": 7.942728042602539,
+						"y": 305.57427978515625,
 						"width": 243.96061370462826,
 						"height": 85,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -359,7 +359,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 12,
@@ -370,11 +370,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 527.8286946286161,
-						"y": 318.32977294921875,
+						"x": 475,
+						"y": 315,
 						"width": 106.14826876271798,
 						"height": 10,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -408,7 +408,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 13,
@@ -419,11 +419,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 527.7068458626795,
-						"y": 329.0538635253906,
+						"x": 475,
+						"y": 325,
 						"width": 106.39199798865752,
 						"height": 10,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -457,7 +457,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 14,
@@ -468,11 +468,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 507.9647503258444,
-						"y": 342.70269775390625,
-						"width": 66.90786338644011,
+						"x": 475,
+						"y": 345,
+						"width": 76.20925610479856,
 						"height": 10,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -506,7 +506,7 @@
 						"text-direction": "ltr",
 						"icon-set": -1,
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "left",
 						"read-aloud": false
 					},
 					"uid": 15,
@@ -517,11 +517,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 590.5890989394319,
-						"y": 342.9464111328125,
+						"x": 555,
+						"y": 345,
 						"width": 83.4814507503338,
 						"height": 10,
-						"originX": 0.5,
+						"originX": 0,
 						"originY": 0.5,
 						"color": [
 							1,

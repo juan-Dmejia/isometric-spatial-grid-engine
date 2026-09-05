@@ -11,7 +11,7 @@ export const Engine = {
     
     // Grid settings
     area: 12,
-    max_z: 2,
+    max_z: 3,
     scroll_speed: 2,
 
     // Runtime state tracking
@@ -109,11 +109,13 @@ async function onBeforeProjectStart(runtime) {
 
             for (const inst of runtime.objects.PathMarker.getAllInstances()) {inst.destroy();}
 
-            for (const tile of path) {
+            for (const tile of path.steps) {
                 const {x, y} = Engine.iso.grid_to_screen(tile.i, tile.j, tile.k);
                 runtime.objects.PathMarker.createInstance(1, x, y);
             }
-            runtime.objects.Text_pathLength.getFirstInstance().text = "PATH-LENGTH: " + String(path.length)
+            runtime.objects.Text_pathLength.getFirstInstance().text = "PATH-LENGTH: " + String(path.steps.length);
+            runtime.objects.Text_pathCost.getFirstInstance().text = "PATH-COST: " + String(path.total_cost);
+
         }
     });
 }

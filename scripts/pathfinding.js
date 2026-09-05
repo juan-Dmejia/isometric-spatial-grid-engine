@@ -125,6 +125,7 @@ export function find_path(start, target, grid, options = {}) {
     open_heap.push(start_node);
     open_set_map.set(start_key, start_node);
 
+
     while (open_heap.size() > 0) {
 
         if (closed_set.size > max_search) {
@@ -138,7 +139,10 @@ export function find_path(start, target, grid, options = {}) {
 
         if (current_key === target_key) {
             const fullPath = reconstruct_path(current);
-            return return_only_next_step ? (fullPath[1] || null) : fullPath;
+            return {
+                steps: fullPath,
+                total_cost: current.g,
+            }
         }
 
         closed_set.add(current_key);
@@ -163,6 +167,12 @@ export function find_path(start, target, grid, options = {}) {
             // Add additonal "diagonal cost" (can be zero) if next tile is a diagonal
             const is_diagonal = neighbor_coord.i !== current.i && neighbor_coord.j !== current.j;
             let step_cost = is_diagonal ? diagonal_cost : base_move_cost;
+
+            // Retrieve the ground tile underneath the step target
+            const groundTile = grid.get_tile(neighbor_coord.i, neighbor_coord.j, top_z - 1);
+
+            // Add custom move cost based on tile_id in TileEntity class
+            step_cost += groundTile?.cost ?? 0;
 
             // Elevation traversal cost, adds "climb_cost" to base travel cost according to flights climbed during step
             if (dz > 0) step_cost += dz * climb_cost;

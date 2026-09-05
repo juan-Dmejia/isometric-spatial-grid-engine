@@ -14,15 +14,15 @@ export class TileEntity {
                 this.instance.setAnimation("Green");
                 break;
             case 2:
-                this.cost = .25;
+                this.cost = 1.0;
                 this.instance.setAnimation("Yellow");
                 break;
             case 3:
-                this.cost = .5;
+                this.cost = 2.0;
                 this.instance.setAnimation("Orange");
                 break;
             case 4:
-                this.cost = 1.0;
+                this.cost = 3.0;
                 this.instance.setAnimation("Red");
                 break;    
             default:
