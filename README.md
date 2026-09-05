@@ -20,9 +20,18 @@ This project can prove useful to those building their own isometric, grid-based 
 ### Live Demo
 
 The engine is actively hosted via GitHub Pages. Click the link in the repository's "About" section to test the live interactive web build!
-The controls are WASD to move the camera, right click to place tiles, and left click to delete tiles. There is a small glitch currently that only allows placing max stack tiles but that will be fixed in coming updates.
+
+*Controls*
+* RMB: Place tiles
+* LMB: Delete tiles
+* [1-4]: select tile id (goes green -> red, represents travel cost across type of tile)
+* O: Set Path Start Tile
+* P: Set Path End Tile
+* ENTER: Run Pathfinding algorithm
+
 
 ### Future Work
-The project is still a work in progress. A pathfinding algorithm was implemented back when the project was intended as a video game.
-Now the algorithm remains unused, but my current plan is to create a path-cost simulation tool with configurable obstacles, terrain costs, etc.
-In the future I may add procedural generation with configurable settings, along with generation seeds and even map presets to load in maps according to discrete keys.
+- Create a path-cost simulation tool with obstacles, terrain costs, etc.
+- Show alternative paths (i.e. longer paths that are less 'costly')
+- Make world settings configurable in real time, i.e. Map Area, Terrain Height Max
+- I may add procedural generation with configurable settings, along with generation seeds and even map presets to load in maps according to discrete keys.
