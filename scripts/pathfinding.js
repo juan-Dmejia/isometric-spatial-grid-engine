@@ -101,7 +101,8 @@ export function find_path(start, target, grid, options = {}) {
         max_search = 2000,
         base_move_cost = 1.0,
         diagonal_cost = 1.5,
-        climb_cost = 0.5
+        climb_cost = 0.5,
+        ignore_terrain_costs = false
     } = options;
 
     const start_z = start.k ?? grid.get_top_z(start.i, start.j);
@@ -140,9 +141,9 @@ export function find_path(start, target, grid, options = {}) {
         open_set_map.delete(current_key);
 
         if (current_key === target_key) {
-            const fullPath = reconstruct_path(current);
+            const full_path = reconstruct_path(current);
             return {
-                steps: fullPath,
+                steps: full_path,
                 total_cost: current.g,
             }
         }
@@ -173,11 +174,13 @@ export function find_path(start, target, grid, options = {}) {
             // Retrieve the ground tile underneath the step target
             const groundTile = grid.get_tile(neighbor_coord.i, neighbor_coord.j, top_z - 1);
 
-            // Add custom move cost based on tile_id in TileEntity class
-            step_cost += groundTile?.cost ?? 0;
+            if (!ignore_terrain_costs) {
+                // Add custom move cost based on tile_id in TileEntity class
+                step_cost += groundTile?.cost ?? 0;
 
-            // Elevation traversal cost, adds "climb_cost" to base travel cost according to flights climbed during step
-            if (dz > 0) step_cost += dz * climb_cost;
+                // Elevation traversal cost, adds "climb_cost" to base travel cost according to flights climbed during step
+                if (dz > 0) step_cost += dz * climb_cost;
+            }
 
             const g_score = current.g + step_cost;
             const existing_node = open_set_map.get(n_key);
@@ -200,4 +203,27 @@ export function find_path(start, target, grid, options = {}) {
     }
 
     return null;
+}
+
+export function find_both_paths(start, target, grid, options = {}) {
+
+    // Calculate Least Costly Path (with terrain, climbing, and diagonal penalties)
+    const leastCostlyResult = find_path(start, target, grid, {
+        ...options,
+        ignore_terrain_costs: false
+    });
+
+    // Calculate Shortest Path (uniform step costs, no terrain/climb penalties)
+    const shortestResult = find_path(start, target, grid, {
+        ...options,
+        base_move_cost: 1.0,
+        diagonal_cost: 1.5,
+        climb_cost: 0,
+        ignore_terrain_costs: true
+    });
+
+    return {
+        shortest: shortestResult,     // Minimum physical distance / step count
+        least_costly: leastCostlyResult // Cheapest overall travel weight
+    };
 }

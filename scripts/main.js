@@ -1,6 +1,6 @@
 import { IsoMath } from "./iso-math.js";
 import { SpatialGrid, TileEntity, ObstacleEntity } from "./spatial-grid.js";
-import { find_path } from "./pathfinding.js";
+import { find_path, find_both_paths } from "./pathfinding.js";
 
 
 export const Engine = {
@@ -119,16 +119,26 @@ async function onBeforeProjectStart(runtime) {
         }
 
         if (e.key === "Enter") {
-            const path = find_path(Engine.pathfind_start, Engine.pathfind_target, Engine.grid);
+            const { shortest, least_costly } = find_both_paths(Engine.pathfind_start, Engine.pathfind_target, Engine.grid);
 
-            for (const inst of runtime.objects.PathMarker.getAllInstances()) {inst.destroy();}
 
-            for (const tile of path.steps) {
+            //const path = find_path(Engine.pathfind_start, Engine.pathfind_target, Engine.grid);
+
+            for (const inst of runtime.objects.PathMarkerLight.getAllInstances()) {inst.destroy();}
+            for (const inst of runtime.objects.PathMarkerShort.getAllInstances()) {inst.destroy();}
+
+            for (const tile of shortest.steps) {
                 const {x, y} = Engine.iso.grid_to_screen(tile.i, tile.j, tile.k);
-                runtime.objects.PathMarker.createInstance(1, x, y);
+                runtime.objects.PathMarkerShort.createInstance(1, x, y);
             }
-            runtime.objects.Text_pathLength.getFirstInstance().text = "PATH-LENGTH: " + String(path.steps.length);
-            runtime.objects.Text_pathCost.getFirstInstance().text = "PATH-COST: " + String(path.total_cost);
+
+            for (const tile of least_costly.steps) {
+                const {x, y} = Engine.iso.grid_to_screen(tile.i, tile.j, tile.k);
+                runtime.objects.PathMarkerLight.createInstance(1, x, y);
+            }
+
+            runtime.objects.Text_pathLength.getFirstInstance().text = "PATH-LENGTH: " + String(least_costly.steps.length);
+            runtime.objects.Text_pathCost.getFirstInstance().text = "PATH-COST: " + String(least_costly.total_cost);
 
         }
     });

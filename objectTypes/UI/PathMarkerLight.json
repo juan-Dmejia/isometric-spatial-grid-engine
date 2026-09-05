@@ -1,7 +1,7 @@
 {
-	"name": "PathMarker",
+	"name": "PathMarkerLight",
 	"plugin-id": "Sprite",
-	"sid": 174249143679648,
+	"sid": 244267362135975,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -20,13 +20,13 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 3667077,
+						"imageSpriteId": 6798747,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 347256618787996,
+				"sid": 947413237531883,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
