@@ -19,6 +19,7 @@ self.C3_JsPropNameTable = [
 	{LandTile: 0},
 	{WaterGrid: 0},
 	{WaterTile: 0},
+	{Obstacle: 0},
 	{Text_fps: 0},
 	{Selector: 0},
 	{Text_tileCount: 0},
@@ -29,7 +30,8 @@ self.C3_JsPropNameTable = [
 	{Text_pathCost: 0},
 	{Text_pathLength: 0},
 	{TabMenuBackdrop: 0},
-	{PathMarker: 0},
+	{PathMarkerShort: 0},
+	{PathMarkerLight: 0},
 	{TabMenuText: 0}
 ];
 
@@ -40,6 +42,7 @@ self.InstanceType = {
 	LandTile: class extends self.ISpriteInstance {},
 	WaterGrid: class extends self.ITiledBackgroundInstance {},
 	WaterTile: class extends self.ISpriteInstance {},
+	Obstacle: class extends self.ISpriteInstance {},
 	Text_fps: class extends self.ITextInstance {},
 	Selector: class extends self.ISpriteInstance {},
 	Text_tileCount: class extends self.ITextInstance {},
@@ -50,6 +53,7 @@ self.InstanceType = {
 	Text_pathCost: class extends self.ITextInstance {},
 	Text_pathLength: class extends self.ITextInstance {},
 	TabMenuBackdrop: class extends self.ISpriteInstance {},
-	PathMarker: class extends self.ISpriteInstance {},
+	PathMarkerShort: class extends self.ISpriteInstance {},
+	PathMarkerLight: class extends self.ISpriteInstance {},
 	TabMenuText: class extends self.ITextInstance {}
 }

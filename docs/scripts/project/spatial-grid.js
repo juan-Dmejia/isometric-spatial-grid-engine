@@ -7,6 +7,8 @@ export class TileEntity {
         this.k = k;
         this.id = id;
         this.instance = instance;
+        // Adjust brightness based on k level for visual clarity
+        this.instance.colorRgb = [.70 + (k * .10) , .70 + (k * .10) , .70 + (k * .10) ];
 
         switch (this.id) {
             case 1:
@@ -14,15 +16,15 @@ export class TileEntity {
                 this.instance.setAnimation("Green");
                 break;
             case 2:
-                this.cost = .25;
+                this.cost = 1.0;
                 this.instance.setAnimation("Yellow");
                 break;
             case 3:
-                this.cost = .5;
+                this.cost = 2.0;
                 this.instance.setAnimation("Orange");
                 break;
             case 4:
-                this.cost = 1.0;
+                this.cost = 3.0;
                 this.instance.setAnimation("Red");
                 break;    
             default:
@@ -50,11 +52,10 @@ export class TileEntity {
 
 export class ObstacleEntity {
     /* Constructor class used by all obstacle instances, currently unused */
-    constructor(i, j, k, id, instance = null) {
+    constructor(i, j, k, instance = null) {
         this.i = i;
         this.j = j;
         this.k = k;
-        this.id = id;
         this.instance = instance;
     }
 
@@ -68,7 +69,7 @@ export class SpatialGrid {
     constructor() {
         // Hash maps using "i,j,k" keys for low-power state checks
         this.tile_map = new Map();
-        this.instance_map = new Map();
+        this.obstacle_map = new Map();
     }
 
     get_key(i, j, k) {
@@ -93,17 +94,17 @@ export class SpatialGrid {
 
     // object instance functions
 
-    add_instance(obstacle_instance) {
+    add_obstacle(obstacle_instance) {
         const key = this.get_key(obstacle_instance.i, obstacle_instance.j, obstacle_instance.k);
-        this.instance_map.set(key, obstacle_instance);
+        this.obstacle_map.set(key, obstacle_instance);
     }
 
-    get_instance(i, j, k) {
-        return this.instance_map.get(this.get_key(i, j, k));
+    get_obstacle(i, j, k) {
+        return this.obstacle_map.get(this.get_key(i, j, k));
     }
 
-    has_instance(i, j, k) {
-        return this.instance_map.has(this.get_key(i, j, k));
+    has_obstacle(i, j, k) {
+        return this.obstacle_map.has(this.get_key(i, j, k));
     }
 
     // Spatial Queries used by Pathfinding & Main Engine
@@ -118,10 +119,9 @@ export class SpatialGrid {
     }
 
     is_traversable(i, j, k) {
-        /* Interface method required by Pathfinding.js, Currently unused */
 
         // Unwalkable if blocked by an obstacle at elevation k
-        if (this.has_instance(i, j, k)) return false;
+        if (this.has_obstacle(i, j, k)) return false;
         
         // Walkable if a ground tile exists below the current step level
         return this.has_tile(i, j, k - 1);
@@ -148,13 +148,13 @@ export class SpatialGrid {
         }
     }
 
-    destroy_instance(i, j, k) {
+    destroy_obstacle(i, j, k) {
         const key = this.get_key(i, j, k);
-        const obstacle_instance = this.instance_map.get(key);
+        const obstacle_instance = this.obstacle_map.get(key);
 
         if (obstacle_instance) {
             obstacle_instance.destroy();
-            this.instance_map.delete(key);
+            this.obstacle_map.delete(key);
         }
     }
 }
