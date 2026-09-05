@@ -73,7 +73,8 @@
 				"items": [
 					"LandTile",
 					"WaterGrid",
-					"WaterTile"
+					"WaterTile",
+					"Obstacle"
 				],
 				"subfolders": [],
 				"name": "Tiles"

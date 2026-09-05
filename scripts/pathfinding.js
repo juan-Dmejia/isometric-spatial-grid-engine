@@ -99,9 +99,8 @@ export function find_path(start, target, grid, options = {}) {
     const {
         allow_diagonal = true,
         max_search = 2000,
-        return_only_next_step = false,
         base_move_cost = 1.0,
-        diagonal_cost = 1.0,
+        diagonal_cost = 1.5,
         climb_cost = 0.5
     } = options;
 

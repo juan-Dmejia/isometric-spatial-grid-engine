@@ -291,7 +291,7 @@
 				{
 					"type": "Text_Controls",
 					"properties": {
-						"text": "LMB: Place Tiles | RMB: Delete Tile | (1-4): Select Tile Preset\nGreen --> Red (Less Travel Cost --> More)\n\nO: Set Path Start | P: Set Path Target | ENTER: Find Path\nMMB: Place Obstacle* (makes tile untraversable)\n\nE: Configure Settings* | TAB: Hide Overlay | * not implemented",
+						"text": "LMB: Place Tiles | RMB: Delete Tile | (1-4): Select Tile Preset\nGreen --> Red (Less Travel Cost --> More)\n\nO: Set Path Start | P: Set Path Target | ENTER: Find Path\nQ: Place Obstacle (makes tile untraversable)\n\nE: Configure Settings* | TAB: Hide Overlay | * not implemented",
 						"enable-bbcode": true,
 						"font": "Minecraft",
 						"size": 6,
