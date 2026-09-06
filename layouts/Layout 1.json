@@ -291,7 +291,7 @@
 				{
 					"type": "Text_Controls",
 					"properties": {
-						"text": "LMB: Place Tiles | RMB: Delete Tile | (1-4): Select Tile Preset\nGreen --> Red (Less Travel Cost --> More)\n\nO: Set Path Start | P: Set Path Target | ENTER: Find Path\nQ: Place Obstacle (makes tile untraversable)\n\nE: Configure Settings* | TAB: Hide Overlay | * not implemented",
+						"text": "LMB: Place Tiles | RMB: Delete Tile | (1-4): Select Tile Preset\nGreen --> Red (Less Travel Cost --> More)\n\nO: Set Path Start | P: Set Path Target | ENTER: Find Path\nQ: Place Obstacle (makes tile untraversable)\n\nTAB: Hide Overlay",
 						"enable-bbcode": true,
 						"font": "Minecraft",
 						"size": 6,
@@ -520,6 +520,55 @@
 						"x": 555,
 						"y": 345,
 						"width": 83.4814507503338,
+						"height": 10,
+						"originX": 0,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				},
+				{
+					"type": "Text_pathExplanation",
+					"properties": {
+						"text": "FOR LIGHTEST PATH (YELLOW)",
+						"enable-bbcode": true,
+						"font": "Minecraft",
+						"size": 6,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							0,
+							0,
+							0,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "left",
+						"read-aloud": false
+					},
+					"uid": 5,
+					"sid": 153862280731814,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 480.82659912109375,
+						"y": 335.2584228515625,
+						"width": 128.65359750349683,
 						"height": 10,
 						"originX": 0,
 						"originY": 0.5,

@@ -13,6 +13,7 @@
 		"Text_pathStart",
 		"Text_pathEnd",
 		"Text_pathCost",
-		"Text_pathLength"
+		"Text_pathLength",
+		"Text_pathExplanation"
 	]
 }

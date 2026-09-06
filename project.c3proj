@@ -92,7 +92,8 @@
 					"Text_pathLength",
 					"TabMenuBackdrop",
 					"PathMarkerShort",
-					"PathMarkerLight"
+					"PathMarkerLight",
+					"Text_pathExplanation"
 				],
 				"subfolders": [],
 				"name": "UI"

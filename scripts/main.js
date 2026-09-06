@@ -14,6 +14,7 @@ export const Engine = {
     max_z: 3,
     scroll_speed: 2,
 
+
     // Runtime state tracking
     mouse: { i: 0, j: 0, k: 0, x: 0, y: 0 },
     tile_id: 1,             // determines tile to be placed (green --> red), switch with number keys
