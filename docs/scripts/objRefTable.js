@@ -32,6 +32,7 @@ self.C3_JsPropNameTable = [
 	{TabMenuBackdrop: 0},
 	{PathMarkerShort: 0},
 	{PathMarkerLight: 0},
+	{Text_pathExplanation: 0},
 	{TabMenuText: 0}
 ];
 
@@ -55,5 +56,6 @@ self.InstanceType = {
 	TabMenuBackdrop: class extends self.ISpriteInstance {},
 	PathMarkerShort: class extends self.ISpriteInstance {},
 	PathMarkerLight: class extends self.ISpriteInstance {},
+	Text_pathExplanation: class extends self.ITextInstance {},
 	TabMenuText: class extends self.ITextInstance {}
 }
